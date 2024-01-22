@@ -1,0 +1,161 @@
+4) WAP to Implement Singly Linked List with following operations
+a) Create a linked list.
+b) Insertion of a node at first position, at any position and at end of list.
+Display the contents of the linked list.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int data;
+    struct node* next;
+};
+
+void insertAtBeginning(struct node** head ,int val){
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=val;
+    newnode->next=*head;
+    *head=newnode;
+}
+
+void insertAtEnd(struct node** head,int val){
+    struct node* newnode=(struct node*)malloc(sizeof(struct node));
+    struct node* temp=*head;
+    newnode ->data=val;
+    newnode->next=NULL;
+
+    if(*head==NULL){
+        *head=newnode;
+        return;
+    }
+    while(temp->next != NULL){
+        temp=temp->next;
+    }
+    temp->next=newnode;
+
+}
+
+void insertAtPosition(struct node** head,int val,int pos){
+     if(pos<=0){
+        printf("Invalid position\n");
+        return;
+     }
+     if(pos==1 || *head==NULL){
+        insertAtBeginning(head,val);
+        return;
+     }
+     struct node* newnode=(struct node*)malloc(sizeof(struct node));
+     newnode->data=val;
+     struct node* temp=*head;
+     int count=1;
+
+     while(count<pos-1 && temp->next !=NULL){
+        temp=temp->next;
+        count++;
+     }
+
+     if(count<pos-1){
+        printf("Invalid Position\n");
+        return;
+     }
+
+     newnode->next=temp->next;
+     temp->next=newnode;
+}
+
+void display(struct node* head){
+    struct node* temp=head;
+
+    if(temp==NULL){
+        printf("Linked List is Empty");
+        return;
+    }
+    while(temp!=NULL){
+        printf("%d\t",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int ch,new,pos;
+    struct node* head=NULL;
+    while(ch!=5)
+    {
+    printf("Menu 1:Insert at beginning 2:Insert at a specific position 3:Insert at end 4:Display 5:Exit\n");
+    printf("Enter your choice\n");
+    scanf("%d",&ch);
+    switch(ch)
+    {
+        case 1:
+        {
+        printf("Enter the data you want to insert at beginning\n");
+        scanf("%d",&new);
+        insertAtBeginning(&head,new);
+        break;
+        }
+        case 2:
+        {
+        printf("Enter the data and position at which you want to insert \n");
+        scanf("%d%d",&new,&pos);
+        insertAtPosition(&head,new,pos);
+        break;
+        }
+        case 3:
+        {
+        printf("Enter the data  you want to insert at end\n");
+        scanf("%d",&new);
+        insertAtEnd(&head,new);
+        break;
+        }
+        case 4:
+        {
+            printf("Created linked list is:\n");
+            display(head);
+            break;
+        }
+        case 5:
+        {
+            return 0;
+            break;
+        }
+        case 6:
+        {
+            printf("Invalid data!");
+            break;
+        }
+        }
+}
+return 0;
+}
+
+
+output:
+Menu 1:Insert at beginning 2:Insert at a specific position 3:Insert at end 4:Display 5:Exit
+Enter your choice
+1
+Enter the data you want to insert at beginning
+3
+Enter your choice
+1
+Enter the data you want to insert at beginning
+5
+Enter your choice
+2
+Enter the data and position at which you want to insert
+4 3
+Enter your choice
+3
+Enter the data  you want to insert at end
+7
+Enter your choice
+4
+Created linked list is:
+5       3       4       7
+Enter your choice
+5
+
+Process returned 0 (0x0)   execution time : 32.699 s
+Press any key to continue.
+
