@@ -1,0 +1,77 @@
+Write a program to construct binary search tree to traverse the tree using all methods 
+in-order,pre-order,post-order
+#include <stdio.h>
+#include <stdlib.h>
+struct BSTnode{
+	int data;
+	struct BSTnode *left;
+	struct BSTnode *right;
+}
+struct BSTnode *newNode(int val)
+{	struct BSTnode *temp = (struct BSTnode*) malloc(sizof(struct BSTnode));
+	temp-data = val;
+	temp->left = NULL;
+	temp->right = NULL;
+	return temp;
+}
+struct BSTnode *insert(struct BSTnode *node,int val){
+	if(node == NULL)
+	{	return newNode(val);
+	}else if(oval < node->data){
+		node-left = insert(node->left,val)
+	}else{
+	node->right = insert(node->right,val);
+	}
+	return node;
+}
+void preorder(struct BSTnode* root){
+	if(root!=NULL){
+		printf("%d",root->data);
+		preorder(root->left);
+		preorder(root->right);
+	}
+}
+void inorder(struct BSTnode* root){
+	if(root!=NULL){
+		inorder(root->left);
+		printf("%d",root->data);
+		inorder(root->right);
+	}
+}
+void postorder(struct BSTnode* root){
+	if(root!=NULL){	
+		postorder(root->left);
+		postorder(root->right);
+		printf("%d",root->data);
+	}
+}
+
+void main (){
+struct BSTnode * root = NULL;
+root = insert(root,50);
+root = insert(root,30);
+root = insert(root,20);
+root = insert(root,40);
+root = insert(root,70);
+printf("preorder traversal");
+preorder(root);
+printf("inorder traversal");
+inorder(root);
+printf("postorder traversal");
+postorder(root);
+
+}
+
+output:
+	preorder traversal:
+	50 30 20 40 70 
+	inorder traversal:
+	20 30 40 50 70 
+	postorder traversal:
+	20 40 30 70 50 
+
+
+	
+
+
+
