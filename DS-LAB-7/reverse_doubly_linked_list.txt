@@ -1,0 +1,23 @@
+Q)Reverse doubly linked list
+
+DoublyLinkedListNode* reverse(DoublyLinkedListNode* llist) {
+
+ DoublyLinkedListNode* temp = NULL;
+    DoublyLinkedListNode* current = llist;
+
+    // Swap next and prev for all nodes of the doubly linked list
+    while (current != NULL) {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+        current = current->prev;
+    }
+
+    // Change the head pointer of the original list
+    if (temp != NULL) {
+        llist = temp->prev;
+    }
+
+    return llist;
+
+}
