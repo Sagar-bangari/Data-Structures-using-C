@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 10
+void bfs(int adj[MAX][MAX], int visited[MAX],int v,int start);
+int main(){
+int v;
+printf("Enter the number of vertices in graph\n");
+scanf("%d",&v);
+int adj[v][v];
+printf("Enter the adjacency matrix of graph\n");
+for(int i = 0 ; i < v ; i++){
+    for(int j = 0 ; j < v ; j ++){
+        scanf("%d",&adj[i][j]);
+    }
+}
+int visited[v];
+dfs(adj,visited,v,0);
+
+
+}
+
+void dfs(int adj[MAX][MAX], int visited[MAX],int v,int start){
+
+    int stack[v], top=-1,i,k;
+    for(k = 0 ;k < v; k++){
+        visited[k]=0;
+    }
+    stack[++top]=start;
+
+    visited[start]=1;
+    while(top!=-1){
+        start = stack[top--];
+        printf("%d->",start);
+        for(i = 0 ; i < v ; i++){
+            if(adj[start][i]&&visited[i]==0){
+                stack[++top]=i;
+                visited[i]=1;
+            }
+        }
+    }
+
+    for(int a = 0 ; a < v; a++){
+        if(visited[a]==0){
+            printf("\nThe graph is not connected");
+            return;
+        }
+    }
+    printf("\nThe graph is connected");
+}

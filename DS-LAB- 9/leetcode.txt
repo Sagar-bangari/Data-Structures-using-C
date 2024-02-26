@@ -1,0 +1,24 @@
+void search(struct TreeNode* node, int *arr, int *top) {
+    if (node == NULL) 
+        return;
+    if (node -> left == NULL && node -> right == NULL) {
+        *top = (*top) + 1 ;
+        arr[ (*top) ] = node -> val;
+        return;
+}
+    search(node -> left, arr, top);
+    search(node -> right, arr, top);
+}
+
+bool leafSimilar(struct TreeNode* root1, struct TreeNode* root2){
+    int arr1[200], arr2[200];
+    int top1 = -1, top2 = -1;
+    search(root1, arr1, &top1);
+    search(root2, arr2, &top2);
+    if (top1 != top2) return false;
+        for (int i = 0; i <= top1; i++) {
+            if (arr1[i] != arr2[i])
+                return false;
+        }
+    return true;
+}
