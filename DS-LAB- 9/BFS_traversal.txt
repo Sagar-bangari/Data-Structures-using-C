@@ -38,3 +38,14 @@ void bfs(int adj[MAX][MAX], int visited[MAX],int v,int start){
         }
     }
 }
+
+output:
+Enter the number of vertices in the graph
+5
+Enter the adjacency matrix of the graph
+0 0 1 0 1 
+0 0 1 1 0 
+1 1 0 0 1 
+0 1 0 0 1 
+1 0 1 1 0 
+0->2->4->1->3->
